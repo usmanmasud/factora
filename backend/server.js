@@ -7,7 +7,12 @@ const { checkAndAlertLowStock } = require('./controllers/smsController');
 const app = express();
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://frontend-psi-beryl-43.vercel.app',
+    'http://localhost:3000'
+  ]
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

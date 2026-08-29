@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Dashboard from './pages/Dashboard';
+import Inventory from './pages/Inventory';
+import Orders from './pages/Orders';
+import Workers from './pages/Workers';
+import Alerts from './pages/Alerts';
+import Airtime from './pages/Airtime';
+import './index.css';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="layout">
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/workers" element={<Workers />} />
+          <Route path="/alerts" element={<Alerts />} />
+          <Route path="/airtime" element={<Airtime />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
-
-export default App;

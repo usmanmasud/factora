@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: factora-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        sync: false
+      - key: AT_API_KEY
+        sync: false
+      - key: AT_USERNAME
+        value: sandbox
+      - key: AT_SENDER_ID
+        value: FACTORA
+      - key: AT_SHORTCODE
+        value: "*384*12345#"
+      - key: NODE_ENV
+        value: production

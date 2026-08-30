@@ -2,7 +2,7 @@ const Order = require('../models/Order');
 const Inventory = require('../models/Inventory');
 const Alert = require('../models/Alert');
 const AirtimeLog = require('../models/AirtimeLog');
-const Worker = require('../models/Worker');
+const Downtime = require('../models/Downtime');
 
 exports.getInsights = async (req, res) => {
   const [
@@ -14,6 +14,9 @@ exports.getInsights = async (req, res) => {
     lowStockItems,
     recentOrders,
     ordersByStatus,
+    openDowntime,
+    totalDowntime,
+    recentDowntime,
   ] = await Promise.all([
     Order.countDocuments(),
     Order.countDocuments({ status: 'pending' }),
@@ -23,6 +26,9 @@ exports.getInsights = async (req, res) => {
     Inventory.find({ $expr: { $lte: ['$quantity', '$reorderLevel'] } }),
     Order.find().sort({ createdAt: -1 }).limit(5),
     Order.aggregate([{ $group: { _id: '$status', count: { $sum: 1 } } }]),
+    Downtime.countDocuments({ status: 'open' }),
+    Downtime.countDocuments(),
+    Downtime.find().sort({ createdAt: -1 }).limit(5),
   ]);
 
   res.json({
@@ -33,9 +39,12 @@ exports.getInsights = async (req, res) => {
       totalAlerts,
       totalAirtimeSent: totalAirtime[0]?.total || 0,
       lowStockCount: lowStockItems.length,
+      openDowntime,
+      totalDowntime,
     },
     lowStockItems,
     recentOrders,
     ordersByStatus,
+    recentDowntime,
   });
 };

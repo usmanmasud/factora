@@ -8,4 +8,5 @@ const at = AfricasTalking({
 module.exports = {
   sms: at.SMS,
   airtime: at.AIRTIME,
+  voice: at.VOICE,
 };

@@ -22,3 +22,9 @@ export const getAlerts = () => api.get('/sms');
 
 export const sendAirtime = (data) => api.post('/airtime/send', data);
 export const getAirtimeLogs = () => api.get('/airtime/logs');
+
+export const getDowntime = () => api.get('/downtime');
+export const logDowntime = (data) => api.post('/downtime', data);
+export const resolveDowntime = (id) => api.patch(`/downtime/${id}/resolve`);
+
+export const callWorker = (data) => api.post('/voice/call', data);

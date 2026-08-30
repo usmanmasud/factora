@@ -6,6 +6,7 @@ const links = [
   { to: '/inventory', label: 'Inventory', icon: '📦' },
   { to: '/orders', label: 'Orders', icon: '🛒' },
   { to: '/workers', label: 'Workers', icon: '👷' },
+  { to: '/downtime', label: 'Downtime', icon: '⚠️' },
   { to: '/alerts', label: 'SMS Alerts', icon: '📱' },
   { to: '/airtime', label: 'Airtime', icon: '💳' },
 ];

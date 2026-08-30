@@ -7,6 +7,7 @@ import Orders from './pages/Orders';
 import Workers from './pages/Workers';
 import Alerts from './pages/Alerts';
 import Airtime from './pages/Airtime';
+import Downtime from './pages/Downtime';
 import './index.css';
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/workers" element={<Workers />} />
           <Route path="/alerts" element={<Alerts />} />
           <Route path="/airtime" element={<Airtime />} />
+          <Route path="/downtime" element={<Downtime />} />
         </Routes>
       </div>
     </BrowserRouter>

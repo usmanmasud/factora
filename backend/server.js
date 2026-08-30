@@ -23,6 +23,8 @@ app.use('/api/insights', require('./routes/insights'));
 app.use('/api/inventory', require('./routes/inventory'));
 app.use('/api/workers', require('./routes/workers'));
 app.use('/api/orders', require('./routes/orders'));
+app.use('/api/downtime', require('./routes/downtime'));
+app.use('/api/voice', require('./routes/voice'));
 
 // Run low-stock check every 10 minutes
 setInterval(checkAndAlertLowStock, 10 * 60 * 1000);

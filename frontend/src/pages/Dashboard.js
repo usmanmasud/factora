@@ -47,8 +47,16 @@ export default function Dashboard() {
           <div className="stat-value">{summary.totalAlerts}</div>
         </div>
         <div className="stat-card success">
-          <div className="stat-label">Airtime Sent (KES)</div>
+          <div className="stat-label">Airtime Sent</div>
           <div className="stat-value">{summary.totalAirtimeSent}</div>
+        </div>
+        <div className="stat-card danger">
+          <div className="stat-label">Open Downtime</div>
+          <div className="stat-value">{summary.openDowntime}</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-label">Total Downtime Events</div>
+          <div className="stat-value">{summary.totalDowntime}</div>
         </div>
       </div>
 
@@ -78,6 +86,27 @@ export default function Dashboard() {
           </ResponsiveContainer>
         </div>
       </div>
+
+      {data.recentDowntime?.length > 0 && (
+        <div className="card">
+          <div className="section-title">Recent Downtime</div>
+          <div className="table-wrap">
+            <table>
+              <thead><tr><th>Machine</th><th>Reason</th><th>Status</th><th>Time</th></tr></thead>
+              <tbody>
+                {data.recentDowntime.map((d) => (
+                  <tr key={d._id}>
+                    <td>{d.machine}</td>
+                    <td>{d.reason}</td>
+                    <td><span className={`badge badge-${d.status === 'open' ? 'pending' : 'delivered'}`}>{d.status}</span></td>
+                    <td>{new Date(d.createdAt).toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       <div className="card">
         <div className="section-title">Recent Orders</div>

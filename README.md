@@ -1,6 +1,13 @@
 # Factora
 
-Industrial coordination platform for African manufacturers — powered by Africa's Talking APIs.
+> **Industrial coordination platform for African manufacturers — powered by Africa's Talking APIs.**
+
+🔴 **Live Demo:** [factora.vercel.app](https://frontend-psi-beryl-43.vercel.app)
+
+[![Docker](https://img.shields.io/badge/Docker-ready-blue?logo=docker)](./docker-compose.yml)
+[![Africa's Talking](https://img.shields.io/badge/Africa's%20Talking-SMS%20%7C%20USSD%20%7C%20Airtime-red)](https://africastalking.com)
+[![Node.js](https://img.shields.io/badge/Node.js-20-green?logo=node.js)](./backend)
+[![React](https://img.shields.io/badge/React-19-blue?logo=react)](./frontend)
 
 ## Features
 - **SMS Alerts** — Downtime, restock, and task alerts to workers
@@ -40,6 +47,19 @@ AT_USERNAME=sandbox
 AT_SENDER_ID=FACTORA
 AT_SHORTCODE=*384*12345#
 ```
+
+## Run with Docker (One Command)
+
+```bash
+git clone https://github.com/YOUR_USERNAME/factora.git
+cd factora
+cp backend/.env.example backend/.env   # fill in your AT credentials
+docker compose up --build
+```
+
+Open `http://localhost` — that's it.
+
+---
 
 ## Africa's Talking Setup (Sandbox)
 1. Sign up at [account.africastalking.com](https://account.africastalking.com)

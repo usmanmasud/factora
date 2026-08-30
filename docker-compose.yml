@@ -15,7 +15,7 @@ services:
       retries: 5
 
   backend:
-    image: auwalapi/factora-backend:latest
+    image: usmanapi/factora-backend:latest
     build: ./backend
     ports:
       - "5000:5000"
@@ -33,7 +33,7 @@ services:
       retries: 3
 
   frontend:
-    image: auwalapi/factora-frontend:latest
+    image: usmanapi/factora-frontend:latest
     build:
       context: ./frontend
       args:

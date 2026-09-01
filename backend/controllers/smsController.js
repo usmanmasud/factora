@@ -20,7 +20,6 @@ exports.sendAlert = async (req, res) => {
     result = await sms.send({
       to: phones,
       message: `[FACTORA] ${message}`,
-      from: process.env.AT_SENDER_ID,
     });
     console.log('AT SMS result:', JSON.stringify(result, null, 2));
   } catch (err) {
@@ -50,7 +49,7 @@ exports.checkAndAlertLowStock = async () => {
 
   for (const item of lowItems) {
     const msg = `LOW STOCK ALERT: ${item.product} is at ${item.quantity} ${item.unit}. Reorder level: ${item.reorderLevel}.`;
-    await sms.send({ to: phones, message: `[FACTORA] ${msg}`, from: process.env.AT_SENDER_ID });
+    await sms.send({ to: phones, message: `[FACTORA] ${msg}` });
     await Inventory.findByIdAndUpdate(item._id, { alertSent: true });
     await Alert.create({ type: 'restock', message: msg, recipients: phones, status: 'sent' });
   }

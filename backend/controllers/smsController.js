@@ -15,11 +15,18 @@ exports.sendAlert = async (req, res) => {
 
   if (phones.length === 0) return res.status(400).json({ error: 'No recipients found' });
 
-  const result = await sms.send({
-    to: phones,
-    message: `[FACTORA] ${message}`,
-    from: process.env.AT_SENDER_ID,
-  });
+  let result;
+  try {
+    result = await sms.send({
+      to: phones,
+      message: `[FACTORA] ${message}`,
+      from: process.env.AT_SENDER_ID,
+    });
+    console.log('AT SMS result:', JSON.stringify(result, null, 2));
+  } catch (err) {
+    console.error('AT SMS error:', err.message);
+    return res.status(500).json({ error: err.message });
+  }
 
   const alert = await Alert.create({
     type,
